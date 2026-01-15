@@ -1,5 +1,7 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL + "/api" || "http://localhost:8080/api";
+const rawUrl = import.meta?.env?.VITE_API_URL;
+const API_BASE_URL = rawUrl
+  ? rawUrl.replace(/\/$/, "") + "/api"
+  : "http://localhost:8080/api";
 
 const apiFetch = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
